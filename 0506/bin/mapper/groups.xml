@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groups">
+<!-- namespace를 테이블명으로 -->
+	<delete id="delete" parameterType="int">
+		DELETE groups WHERE no = #{no}
+	</delete>
+	<!--
+		데이터를 한꺼번에 넘겨주기 위해 parameterType에 객체명 적어줌 
+		parameterType에 적은 객체가 가지고 있는 멤버필드명을 #{}안에 써줌 
+	-->
+	<insert id="insert" parameterType="vo.Group">
+		INSERT INTO groups(no, name, debut_date)
+		VALUES(groups_seq.nextval,#{name},#{debutDate})
+	</insert>
+	
+	<update id="update" parameterType="vo.Group">
+		UPDATE groups SET name=#{name} WHERE no=#{no}
+	</update>
+	
+	<select id="selectList" resultType="vo.Group"> 
+						 <!-- alias 작성해야 setdebutDate 호출됨 -->
+		SELECT no, name, debut_date debutDate FROM groups
+	</select>
+</mapper>

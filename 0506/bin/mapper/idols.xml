@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idols">
+<!-- namespace를 테이블명으로 -->
+	<delete id="delete" parameterType="int">
+		DELETE idols WHERE no = #{no}
+	</delete>
+	<!-- 
+		myBatis에 2개 이상의 데이터를 넘겨줘야 하는 경우 객체로 넘겨줌 
+		#{name}를 썼을 때 myBatis는 getName() 메소드를 호출함 
+	-->
+	<insert id="insert" parameterType="vo.Idol">
+		INSERT INTO idols(no, name, height, weight, birth_date, group_no)
+		VALUES(idols_seq.nextval, #{name}, #{height}, #{weight}, #{birthDate}, #{groupNo})
+	</insert>
+	
+	<update id="update" parameterType="vo.Idol">
+		UPDATE idols SET weight=#{weight} WHERE no=#{no}
+	</update>
+	
+	<select id="selectList" resultType="vo.Idol">
+		SELECT no, name, height, weight, birth_date birthDate, group_no groupNo 
+		FROM idols
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="vo.Idol">
+		SELECT no, name, height, weight, birth_date birthDate, group_no groupNo
+		FROM idols
+		WHERE no=#{no}
+	</select>
+</mapper>
