@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groups">
+<!-- namespace를 테이블명으로 --> 
+	<select id="groupList" resultType="vo.Group">
+		SELECT no, name, debut_date debutDate FROM groups ORDER BY no
+	</select>
+	<delete id="deleteGroup" parameterType="int">
+		DELETE groups WHERE no=#{no}
+	</delete>
+	<insert id="insertGroup" parameterType="vo.Group">
+		INSERT INTO groups(no, name, debut_date) 
+		VALUES(groups_seq.nextval, #{name}, #{debutDate})
+	</insert>
+	<select id="selectOne" resultType="vo.Group" parameterType="int"> 
+		SELECT no, name, debut_date debutDate FROM groups WHERE no=#{no}
+	</select>
+	<update id="updateGroup" parameterType="vo.Group"> 
+		UPDATE groups SET name=#{name}, debut_date=#{debutDate} WHERE no=#{no}
+	</update>
+</mapper>
