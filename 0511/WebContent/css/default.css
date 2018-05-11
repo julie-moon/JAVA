@@ -1,0 +1,119 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+}
+#header{
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #5542BB;
+    margin-bottom: 20px;
+}
+.aux{
+    width:1000px;
+    margin: auto;
+    position: relative;
+}
+#header a{
+    text-decoration: none;
+    color:#5542BB;
+}
+#header a:hover {
+	 text-shadow: 0 0 10px #5542BB;
+}
+#header .logo{
+    height: 60px;
+    font-size: 40px;
+    position: absolute;
+    top: 10px;
+    font-weight: 900;
+}
+#header img{
+    width: 50px;
+    height: 60px;
+    vertical-align: middle;
+}
+#header span{
+    vertical-align: middle;
+}
+#header #navList{
+    position: absolute;
+    right: 0px;
+    top:0;
+}
+#header .nav{
+    height: 80px;
+    float: left;
+    font-weight: 700;
+    line-height: 80px;
+}
+#header .nav>a{
+    padding: 0 10px;
+    display: block;
+    transition: .1s ease;
+}
+#header .nav.on>a{
+	font-size:30px;
+}
+
+#header .nav>a:hover{
+    font-size: 28px;
+    color: #5542BB;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px #333;
+    font-size: 28px;
+
+}
+
+#footer {
+    height: 60px;
+    width:100%;
+    text-align: center;
+    border-top:1px solid #5542BB;
+    color: #424242;
+    line-height: 64px;
+    font-size: 14px;
+}
+
+#footer address {
+    position: absolute;
+    top:0px;
+    right:50px;
+}
+
+#footer a {
+    color:#5542BB;
+    text-decoration: none;
+}
+#footer a:hover {
+    text-decoration: underline;
+}
+
+#policy {
+    position: absolute;
+    top:0px;
+    width:750px;
+    text-align: center;
+}
+
+#policy li {
+    display: inline;
+    border-right:1px solid #9575CD;
+    padding-right:10px;
+    margin-left:10px;
+}
+
+#policy li:last-child {
+    border:none;
+}
+
+#policy strong {
+    font-weight:500;
+}
+
+#content img{
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: auto;
+}

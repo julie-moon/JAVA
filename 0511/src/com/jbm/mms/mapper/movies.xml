@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="movies">
+<!-- namespace를 테이블명으로 -->   <!-- mybatis-config.xml에 typeAlias 처리했음 -->
+	<select id="selectListOrderByAud" resultType="Movie">
+		SELECT m.no, m.name, release_date releaseDate, director, audience_num audienceNum, rating, g.name genreName
+		FROM movies m, genres g
+		WHERE genre = g.no
+		ORDER BY audience_num DESC
+	</select>
+	<select id="selectListOrderByDate" resultType="Movie">
+		SELECT m.no, m.name, release_date releaseDate, director, audience_num audienceNum, rating, g.name genreName
+		FROM movies m, genres g
+		WHERE genre = g.no
+		ORDER BY release_date DESC
+	</select>
+	<select id="searchListOrderByAud" resultType="Movie" parameterType="String">
+		SELECT m.no, m.name, release_date releaseDate, director, audience_num audienceNum, rating, g.name genreName
+		FROM movies m, genres g
+		WHERE genre = g.no and m.name LIKE '%'||#{m.name}||'%'
+		ORDER BY audience_num DESC
+	</select>
+	<select id="searchListOrderByDate" resultType="Movie" parameterType="String">
+		SELECT m.no, m.name, release_date releaseDate, director, audience_num audienceNum, rating, g.name genreName
+		FROM movies m, genres g
+		WHERE genre = g.no and m.name LIKE '%'||#{m.name}||'%'
+		ORDER BY release_date DESC
+	</select>
+	<!--  
+	<select id="selectList" resultType="Movie">
+		SELECT no, name, release_date releaseDate, director, audience_num audienceNum, rating, genre FROM movies
+	</select>
+	-->
+	<insert id="insertMovie" parameterType="Movie">
+		INSERT INTO movies(no, name, release_date, director, audience_num, rating, genre) 
+		VALUES(movies_seq.nextval, #{name}, #{releaseDate}, #{director}, #{audienceNum}, #{rating}, #{genre})
+	</insert>
+	<select id="selectOne" resultType="Movie" parameterType="int">
+		SELECT no, name, release_date releaseDate, director, audience_num audienceNum, rating, genre FROM movies WHERE no=#{no}
+	</select>
+	<update id="updateMovie" parameterType="Movie">
+		UPDATE movies SET release_date=#{releaseDate}, genre=#{genre}, rating=#{rating} WHERE no=#{no}
+	</update>
+	<delete id="deleteMovie" parameterType="int">
+		DELETE movies WHERE no=#{no}
+	</delete>
+	<select id="genreCount" parameterType="int" resultType="int">
+		SELECT count(*) FROM movies WHERE genre=#{genre}
+	</select>
+</mapper>
