@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="books">
+<!-- namespace를 테이블명으로 -->   <!-- mybatis-config.xml에 typeAlias 처리했음 -->
+	<!-- SELECT no, title, author, pubdate FROM books ORDER BY no DESC -->
+	<select id="bookList" resultType="vo.Book" parameterType="vo.PageVO">
+		SELECT  no, title, author, pubdate
+		FROM(SELECT no, title, author, pubdate, rownum r
+			 FROM (SELECT no, title, author, pubdate 
+				   FROM books 
+				   ORDER BY no DESC))
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="bookCount" resultType="int">
+		SELECT count(*) FROM books
+	</select>
+</mapper>
