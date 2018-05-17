@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Daum 지도 시작하기</title>
+        <style>
+            #map{
+                width:500px;
+                height:400px;
+            }
+        </style>
+    </head>
+    <body>
+    	<button>현재 주소로 이동!</button>
+        <div id="map"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=324e4f24c7cf51efb74699f821b44809"></script>
+        <script src="js/jquery.js"></script>
+        <script>
+            var container = document.getElementById('map');
+            var options = {
+                center: new daum.maps.LatLng(33.450701, 126.570667),
+                level: 3
+            };
+
+            var map = new daum.maps.Map(container, options);
+            
+            // 1) 버튼을 클릭했을 때
+            $('button').click(function(){
+                // 2) 현재 위치를 얻어오는 메소드 호출
+                navigator.geolocation.getCurrentPosition(
+                function(position){
+                	
+                    alert('성공');
+                    console.log(position); 
+                    
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    
+                    // 다음 맵 APIdml LatLng 객체 생성
+                    var latlng = new daum.maps.LatLng(lat, lng);
+                    console.log(latlng);
+                    
+                    // 지도의 센터를 세팅
+                    map.setCenter(latlng);
+                    
+                    // 마커 생성
+                    var marker = new daum.maps.Marker();
+                    
+                    // 마커 포지션 지정
+                    marker.setPosition(latlng);
+                    
+                    // 마커 맵에 세팅
+                    marker.setMap(map);
+                    
+                    // 지도의 레벨 세팅
+                    map.setLevel(2);
+                    
+                }, function(){
+                    alert('에러');
+                })
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <title>주소 검색</title>
+	    <style>
+	        #wrap{
+	            width:1014px;
+	            border:1px solid #424242;
+	            overflow:hidden; /* float된 자식들의 높이를 알아내기 위해 */
+	            margin:auto;
+	            padding:10px;
+	        }
+	        #searchBox{
+	            width:300px;
+	            min-height:300px;
+	            border:1px solid #424242;
+	            float:left;
+	            margin-right:10px;
+	        }
+	        #map{
+	            width:700px;
+	            height:700px;
+	            border:1px solid #424242;
+	            float:left;
+	        }
+	    </style>
+	</head>
+	<body>
+	    <div id="wrap">
+	        <div id="searchBox">
+	            <form>
+	                <fieldset>
+	                    <legend>검색폼</legend>
+	                    <input placeholder="주소 입력" />
+	                    <button>검색</button>
+	                </fieldset>
+	            </form>
+	            <ul>
+	                <li>검색하세요</li>
+	            </ul>
+	        </div> <!-- // #searchBox -->
+	        <div id="map"></div> <!-- // #map -->
+	    </div> <!-- // #wrap -->
+	    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=324e4f24c7cf51efb74699f821b44809"></script>
+	    <script src="js/jquery.js"></script>    
+	    <script>
+	    
+	 		// 카카오맵 API의 객체
+	    	var geocoder = new daum.maps.services.Geocoder();
+
+
+		    // 새로 만들어진 li 요소를 클릭했을 때
+		    $("ul").on("click","li",function () {
+	
+		        // 해당 그 li요소에서 얻어옴
+		        var lat = this.dataset.lat;
+		        var lng = this.dataset.lng;
+	
+		        // LatLng객체 생성
+		        var latlng = new daum.maps.LatLng(lat,lng);
+	
+		        // 마커 포지션 세팅
+		        marker.setPosition(latlng);
+		        // 맵 센터 세팅
+		        map.setCenter(latlng);
+	
+		    });//on end
+
+		    // 폼에서 submit할때
+		    $("#form").submit(function (e) {
+	
+		        // 유저가 입력한 주소를 얻어옴
+		        var q = $("input").val();
+	
+		        // 주소검색 실행
+		        geocoder.addressSearch(q, function (result, status) {
+		            // result : 결과(json)
+		            // status : 상태(OK,ZERO_RESULT,ERROR)
+	
+		            // daum.maps.services.Status.OK 는 "OK"
+	
+		            if (status === daum.maps.services.Status.OK) {
+		                console.log(result);
+	
+		                // 이때가 성공
+		                $("ul").empty();
+	
+		                // 결과 객체만큼 each구문
+		                $(result).each(function () {
+	
+		                    $("<li>").text(this.address_name)
+		                             .attr({
+			                            "data-lat":this.y,
+			                            "data-lng":this.x
+		                        	  })
+		                     	     .appendTo("ul");
+	
+		                }); // each() end
+	
+		            } else if(status === daum.maps.services.Status.ZERO_RESULT) {
+		                alert("결과가 없습니다.");
+		            } else {
+		                alert("에러입니다.");
+		            } // if~else end
+	
+		        }); // addressSearch() end
+
+	        // submit막기
+	        e.preventDefault();
+		        
+	    });
+
+	    // 자바스크립트로 #map인 요소
+	    var container = document.getElementById('map');
+
+	    // 위도경도객체(에그옐로우)
+	    var latlng = new daum.maps.LatLng(37.48094907957599, 126.95208479057423);
+
+	    // 지도
+	    var map = new daum.maps.Map(container,{
+	        center:latlng,
+	        level:3
+	    });
+
+	    // 마커
+	    var marker = new daum.maps.Marker({
+	        map:map,
+	        position:latlng
+	    });
+	        
+	    </script>
+	</body>
+</html>
