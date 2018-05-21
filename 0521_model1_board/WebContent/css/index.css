@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#boardList {
+	width: 860px;
+	margin: auto;
+}
+
+#boardList #no {
+	width: 70px;
+}
+
+#boardList #title {
+	width: 470px;
+}
+
+#boardList #writer {
+	width: 100px;
+}
+
+#boardList #regdate {
+	width: 150px;
+}
+
+#boardList #hit {
+	width: 70px;
+}
+
+#boardList td, #boardList th {
+	border: 1px solid #05A8F1;
+	padding: 8px 0;
+	text-align: center;
+}
+
+#boardList thead th {
+	font-size: 19px;
+	font-weight: 500;
+	color: #251F39;
+}
+
+#boardList tbody a {
+	display: inline-block;
+	width: 450px;
+	text-align: left;
+	text-decoration: none;
+	color: #000;
+	/*제목이 길때 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.2em;
+}
+
+#boardList tbody a:hover {
+	color: crimson;
+	text-decoration: underline;
+}
+
+#boardList tfoot td {
+	padding: 16px 6px;
+	text-align: right;
+}
+
+#boardList tbody tr:nth-child(odd) {
+	background: #e3f2fd;
+}
+
+#boardList .paginateRow {
+	padding: 0;
+}
+
+#boardList .no_content td {
+	font-size: 24px;
+	font-weight: 500;
+	padding: 12px 0;
+}
+
+caption {
+	display: none;
+}

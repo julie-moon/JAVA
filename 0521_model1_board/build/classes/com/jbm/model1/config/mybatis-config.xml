@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+"-//mybatis.org/DTD/Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- org.jbm.guestbook.vo.Guest 너무 길어서 앨리어스(별칭) 지정 -->
+	<typeAliases>
+		<typeAlias type="com.jbm.model1.vo.User" alias="User" />
+		<typeAlias type="com.jbm.model1.vo.Board" alias="Board" />
+		<typeAlias type="com.jbm.model1.vo.PageVO" alias="PageVO" />
+		<!--  
+		-->
+	</typeAliases>
+	
+	<!-- 데이터베이스 연결 설정 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="JNDI"> <!-- Java Name Domain Interface -->
+				<property name="data_source" value="java:comp/env/oraclexe" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 맵퍼 파일 경로 설정 -->
+	<mappers>
+		<mapper resource="com/jbm/model1/mapper/users.xml" />
+		<mapper resource="com/jbm/model1/mapper/board.xml" />
+		<!--  
+		-->
+	</mappers>
+</configuration>

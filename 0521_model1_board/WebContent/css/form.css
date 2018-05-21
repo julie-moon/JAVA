@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+#logo {
+	position:relative;
+	text-align:center;
+}
+
+#formBox {
+	width: 700px;
+	margin: auto;
+}
+
+#formBox p {
+	margin: 10px 0;
+}
+
+#formBox label {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	font-size: 21px;
+	font-weight: bold;
+	margin-right: 6px;
+	vertical-align: top;
+	line-height: 39px;
+}
+
+#formBox input, #formBox textarea {
+	font: 21px 'bon', sans-serif;
+	border: 1px solid #05A8F1;
+	padding: 6px 4px;
+}
+
+#formBox input:focus, #formBox textarea:focus {
+	border-color: #05A8F1;
+	outline: 1px solid #05A8F1;
+	background: #F6F4FF;
+}
+
+#title {
+	width: 590px;
+}
+
+#contents {
+	width: 590px;
+	resize: none;
+}
+
+#pwd {
+	width: 200px;
+}

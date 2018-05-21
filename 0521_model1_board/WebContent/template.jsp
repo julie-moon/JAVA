@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<%@ include file="/WEB-INF/template/link.jsp" %>
+	</head>
+	<body>
+		<%@ include file="/WEB-INF/template/header.jsp" %>
+		콘텐츠영역
+		<%@ include file="/WEB-INF/template/footer.jsp" %>
+	</body>
+</html>

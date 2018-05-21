@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+<!-- namespace를 테이블명으로 -->   <!-- mybatis-config.xml에 typeAlias 처리했음 -->
+	<insert id="insertContent" parameterType="Board">
+		<!-- 
+			selectKey를 사용하면 insert 전 or 후로 작동이 먼저 됨
+			
+			밑의 selectKey에 대한 설명 
+			
+			insert보다 먼저 작동
+			SELECT 구문 수행한 결과는 int형 
+			그리고 그 값을 우리가 넣은 VO의 멤버필드 no에 대입(setNo()호출) 
+		-->
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT board_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO board(no, title, contents, writer, writer_no, hit, likes, regdate)
+		VALUES(#{no}, #{title}, #{contents}, #{writer}, #{writerNo}, 0, 0, systimestamp)
+	</insert>
+	<select id="boardList" resultType="Board" parameterType="PageVO">
+		SELECT no, title, contents, writer, writerNo, hit, likes, regdate
+		FROM(SELECT no, title, contents, writer, writerNo, hit, likes, regdate, rownum r
+     		 FROM(SELECT no, title, contents, writer, writer_no writerNo, hit, likes, regdate 
+  	      		  FROM board 
+	      		  ORDER BY regdate desc))
+		WHERE r between #{start} AND #{end}
+	</select>
+	<select id="boardCount" resultType="int">
+		SELECT count(*) FROM board
+	</select>
+	<select id="selectContent" resultType="Board" parameterType="int">
+		SELECT no, title, contents, writer, writer_no writerNo, hit, likes, regdate FROM board WHERE no=#{no}	
+	</select>
+	<update id="updateHit" parameterType="int">
+		UPDATE board SET hit = hit+1 WHERE no=#{no}
+	</update>
+	<delete id="deleteContent" parameterType="int">
+		DELETE board WHERE no=#{no}
+	</delete>
+	<update id="updateContent" parameterType="Board">
+		UPDATE board SET title = #{title}, contents = #{contents} WHERE no=#{no}
+	</update>
+</mapper>

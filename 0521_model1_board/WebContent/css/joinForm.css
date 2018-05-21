@@ -1,0 +1,76 @@
+@charset "UTF-8";
+#logo{
+	position:relative;
+	text-align:center;
+}
+
+#content h2 {
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 20px;
+}
+
+#joinBox {
+	width: 520px;
+	margin: auto;
+}
+
+#joinBox .row {
+	margin: 10px 0;
+}
+#joinBox .msg {
+	display:block;
+	position:relative;
+	width:350px;
+	left:160px;
+	color:#E91E63;
+	font-weight:500;
+	margin:5px 0;
+	display:none;
+}
+#joinBox .msg.ok {
+	color:#2196F3;
+}
+
+#joinBox label {
+	width: 140px;
+	display: inline-block;
+	font-size: 19px;
+	text-align: right;
+	margin-right: 10px;
+	color: #666;
+	height: 20px;
+	line-height: 20px;
+}
+
+#joinBox input {
+	border: 1px solid #E1E1E1;
+	width: 333px;
+	height: 20px;
+	font-size: 19px;
+	font-family: 'bon', sans-serif;
+	font-weight: 500;
+	padding: 6px;
+	color: #606060;
+	transition: .2s ease;
+}
+
+#joinBox #profile {
+	font-size: 15px;
+	cursor: pointer;
+	height: 30px;
+}
+
+#birthDate {
+	display: inline-block;
+	text-align: right;
+}
+
+#birthDate input {
+	width: 70px;
+}
+
+#birthDate label {
+	width: auto;
+}
