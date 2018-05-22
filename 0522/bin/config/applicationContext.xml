@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+		Java EE(servlet & jsp등 웹)에서는 객체를 자바빈이라고 하고,
+		멤버필드를 프로퍼티라고 함
+		
+		스프링에서도 객체를 빈이라고 함
+		스프링은 빈(객체) 팩토리
+		우리가 설정한대로 객체를 만들어줌
+	 -->
+ 	<!-- Actor a1 = new Actor(); -->
+	<bean id="a1" class="vo.Actor">
+		<property name="name" value="현빈"></property>
+		<property name="height" value="185"></property>
+		<property name="weight" value="74"></property>
+	</bean>
+	
+	<!-- 의존성을 setter로 주입함 -->
+	<bean id="a2" class="vo.Actor" p:name="마동석" p:height="178" p:weight="100" />
+	
+	<bean id="ap" class="util.ActorPrinterKO" p:actor-ref="a2" />
+	
+</beans>
