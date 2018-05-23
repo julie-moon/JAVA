@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/mybatis-spring-1.3.1.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-aop-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-beans-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-context-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-core-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-expression-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-jcl-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-jdbc-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="//Mac/Home/Downloads/spring/spring-tx-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/jbm/libraries/mybatis-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/jbm/libraries/ojdbc6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
