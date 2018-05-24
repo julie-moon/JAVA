@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 빈 묶기(와이어링) -->
+
+	<!-- 커넥션 풀(DataSource) 설정 -->
+	<bean id="dataSource"
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+		  p:driverClassName="oracle.jdbc.OracleDriver" 
+		  p:url="jdbc:oracle:thin:@localhost:1521:xe" 
+		  p:username="test" 
+		  p:password="1111" />
+		  
+	<!-- SqlSessionFactory 설정 -->
+	<bean id="sqlSessionFactory"
+		  class="org.mybatis.spring.SqlSessionFactoryBean" 
+		  p:dataSource-ref="dataSource"
+		  p:configLocation="config/mybatis-config.xml" />
+		  
+	<!-- SqlSessionTemplate(이게 SqlSession) 설정 -->
+	<bean id="sqlSession" 
+		  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- DAO 설정(sqlSession 주입) -->
+	<bean id="idolsDAO" class="dao.IdolsDAOImpl" p:session-ref="sqlSession" /> <!-- setter 주입 -->
+	
+	<!--  
+		<bean class="dao.IdolsDAOImpl">
+			<constructor-arg ref="sqlSession" /> 생성자 주입 
+		</bean>	  
+	-->
+	
+	<!-- Service 설정 -->
+	<bean id="idolsService" class="service.IdolsServiceImpl" p:idolsDAO-ref="idolsDAO" />
+	
+</beans>
