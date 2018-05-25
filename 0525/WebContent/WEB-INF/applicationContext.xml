@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
+	<!-- applicationContext.xml : Spring 프레임워크 설정 -->
+	
+	<!-- 커넥션풀 설정(WAS) -->
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/oraclexe"></jee:jndi-lookup>
+	
+	<!-- SqlSessionFactory 설정 -->
+	<bean id="sqlSessionFactory"
+	   	  p:dataSource-ref="dataSource"
+		  p:configLocation="WEB-INF/mybatis-config.xml"
+		  class="org.mybatis.spring.SqlSessionFactoryBean"/>
+	
+	<!-- SqlSessionTemplate(이놈이 SqlSession)
+	설정 -->
+	<bean id="sqlSession"
+	class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- DAO 설정 -->
+	<bean id="membersDAO" p:session-ref="sqlSession" class="dao.MembersDAOImpl" />
+	
+	<!-- service 설정 -->
+	<bean id="membersService" p:membersDAO-ref="membersDAO" class="service.MembersServiceImpl" />
+</beans>
