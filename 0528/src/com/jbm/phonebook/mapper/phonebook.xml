@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="phonebook">
+<!-- namespace를 테이블명으로 -->   <!-- mybatis-config.xml에 typeAlias 처리했기 때문에 resultType에 User -->
+	<select id="phonebookList" resultType="Phone" parameterType="int">
+		SELECT no, name, phone, gender, birth_date birthDate, host_no hostNo, regdate 
+		FROM phonebook 
+		WHERE host_no = #{hostNo}
+		ORDER BY no desc
+	</select>
+	<insert id="insertPhonebook" parameterType="Phone">
+		INSERT INTO phonebook(no, name, phone, gender, birth_date, host_no, regdate) 
+		VALUES(phonebook_seq.nextval, #{name}, #{phone}, #{gender}, #{birthDate}, #{hostNo}, systimestamp)
+	</insert>
+	<delete id="deletePhonebook" parameterType="int">
+		DELETE phonebook WHERE no=#{no}
+	</delete>
+</mapper>

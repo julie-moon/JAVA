@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD/Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hosts">
+<!-- namespace를 테이블명으로 -->   <!-- mybatis-config.xml에 typeAlias 처리했기 때문에 resultType에 User -->
+	<select id="selectLoginUser" resultType="Host" parameterType="Host">
+		SELECT no, id, password, nickname, regdate, profile FROM hosts WHERE id=#{id} AND password=#{password}
+	</select>
+</mapper>
